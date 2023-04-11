@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipesearch.RecipeSearchController">
+   <children>
+      <StackPane prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <AnchorPane fx:id="recipeDetailPane" prefHeight="200.0" prefWidth="200.0" />
+            <SplitPane fx:id="searchPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #09cdda;">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ComboBox fx:id="mainIngredientBox" layoutX="113.0" layoutY="243.0" prefWidth="150.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="13.0" />
+                        <ComboBox fx:id="cuisineBox" layoutX="113.0" layoutY="275.0" prefWidth="150.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="13.0" />
+                        <RadioButton fx:id="allRadioButton" layoutX="110.0" layoutY="313.0" mnemonicParsing="false" text="Alla" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="125.0">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Difficulty" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="hardRadioButton" layoutX="110.0" layoutY="384.0" mnemonicParsing="false" text="Svår" toggleGroup="$Difficulty" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="122.5" />
+                        <RadioButton fx:id="mediumRadioButton" layoutX="110.0" layoutY="361.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Medium" toggleGroup="$Difficulty" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="84.0" />
+                        <RadioButton fx:id="easyRadioButton" layoutX="110.0" layoutY="337.0" mnemonicParsing="false" text="Lätt" toggleGroup="$Difficulty" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="122.5" />
+                        <Spinner fx:id="maxPriceSpinner" layoutX="113.0" layoutY="415.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="63.0" />
+                        <Slider fx:id="maxTimeSlider" layoutX="113.0" layoutY="452.0" max="150.0" showTickLabels="true" showTickMarks="true" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="23.0" />
+                        <Label layoutX="8.0" layoutY="159.0" prefHeight="65.0" prefWidth="263.0" text="Hitta ett recept som passar genom att ändra inställningarna nedanför" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="5.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="419.0" text="Maxpris:" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="175.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="58.0" layoutY="450.0" text="Maxtid:" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="178.5" />
+                        <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="247.0" text="Huvudingrediens:" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="177.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="6.0" layoutY="279.0" text="Kök:" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="177.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="313.0" text="Svårighetsgrad:" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="175.0" />
+                        <Label layoutX="219.0" layoutY="419.0" text="Kr" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="45.5" />
+                        <Label fx:id="maxTimeLabel" layoutX="202.0" layoutY="467.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="16.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane prefHeight="498.0" prefWidth="516.0">
+                           <content>
+                              <FlowPane fx:id="recipeFlowpane" prefHeight="499.0" prefWidth="501.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
