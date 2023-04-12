@@ -2,7 +2,9 @@
 package recipesearch;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -10,9 +12,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 import javafx.scene.layout.FlowPane;
+import se.chalmers.ait.dat215.lab2.Recipe;
+
 
 public class RecipeSearchController implements Initializable {
 
@@ -29,6 +35,11 @@ public class RecipeSearchController implements Initializable {
     @FXML private Spinner maxPriceSpinner;
     @FXML private Slider maxTimeSlider;
     @FXML private Label maxTimeLabel;
+    @FXML private Label labelRecipeFood;
+    @FXML private ImageView imageRecipeFood;
+    @FXML private AnchorPane recipeDetailPane;
+    @FXML private SplitPane searchPane;
+    private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
 
     RecipeBackendController rbc = new RecipeBackendController();
     ToggleGroup difficultyToggleGroup = new ToggleGroup();
@@ -36,6 +47,12 @@ public class RecipeSearchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+
+        for (Recipe recipe : rbc.getRecipes()) {
+            RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
+            recipeListItemMap.put(recipe.getName(), recipeListItem);
+        }
+
         //_____________ComboBoxes__________________//
         updateRecipeList();
         mainIngredientBox.getItems().addAll("Visa alla", "Kött", "Fisk", "Kyckling", "Vegetariskt");
@@ -43,6 +60,7 @@ public class RecipeSearchController implements Initializable {
         cuisineBox.getItems().addAll("Visa alla", "Sverige", "Grekland", "Indien", "Asien", "Afrika", "Frankrike");
         cuisineBox.getSelectionModel().select("Visa alla");
         mainIngredientBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
+
         {
 
             @Override
@@ -130,23 +148,50 @@ public class RecipeSearchController implements Initializable {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue)
             {
                 {
-                    rbc.setMaxTime(newValue);
-                    updateRecipeList();
-
-                    if(newValue != null && !newValue.equals(oldValue) && !maxTimeSlider.isValueChanging()) { }
+                    int textValue;
+                    textValue = roundToNearestTen(newValue.intValue());
+                    maxTimeLabel.setText(String.valueOf(textValue));
+                    if(newValue != null && !newValue.equals(oldValue) && !maxTimeSlider.isValueChanging())
+                    {
+                        rbc.setMaxTime(newValue.intValue());
+                        updateRecipeList();
+                    }
                 }
             }
         });
+
     }
 
+    public static int roundToNearestTen(int num) {
+        return (int) Math.round(num / 10.0) * 10;
+    }
     private void updateRecipeList()
     {
         recipeFlowpane.getChildren().clear();
         List<Recipe> recipes = rbc.getRecipes();
         for(Recipe r: recipes)
         {
-            recipeFlowpane.getChildren().add(new RecipeListItem(r, this));
+            recipeFlowpane.getChildren().add(recipeListItemMap.get(r.getName()));
         }
 
     }
+
+
+    private void populateRecipeDetailView(Recipe recipe)
+    {
+        labelRecipeFood.setText(recipe.getName());
+        imageRecipeFood.setImage(recipe.getFXImage());
+    }
+
+
+    @FXML
+    public void closeRecipeView(){
+        searchPane.toFront();
+    }
+
+    public void openRecipeView(Recipe recipe){
+        populateRecipeDetailView(recipe);
+        recipeDetailPane.toFront();
+    }
+
 }

@@ -77,7 +77,7 @@ public class RecipeBackendController implements Initializable
     }
     public void setMaxTime(int maxTime)
     {
-        if(maxTime >= 0 && maxTime<= 150 && maxTime %10 == 0)
+        if(maxTime >= 0 && maxTime<= 150 && (maxTime % 10 == 0))
         {
             searchFilter.setMaxTime(maxTime);
         }
@@ -87,5 +87,4 @@ public class RecipeBackendController implements Initializable
         }
 
     }
-
 }

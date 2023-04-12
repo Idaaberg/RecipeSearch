@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="anchorPanelEgg" prefHeight="100.0" prefWidth="495.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="anchorPanelEgg" onMouseClicked="#onClick" prefHeight="100.0" prefWidth="495.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="imageFood" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labelFood" layoutX="160.0" layoutY="40.0" prefHeight="25.0" prefWidth="321.0">
+      <Label fx:id="foodLabel" layoutX="160.0" layoutY="40.0" prefHeight="25.0" prefWidth="321.0">
          <font>
             <Font size="16.0" />
          </font>
