@@ -17,6 +17,7 @@ public class RecipeBackendController implements Initializable
     RecipeDatabase db = RecipeDatabase.getSharedInstance();
     SearchFilter searchFilter = new SearchFilter(null, 0, null, 0, null);
 
+    int maxTime = 0;
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {

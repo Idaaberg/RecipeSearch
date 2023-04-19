@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="anchorPanelEgg" onMouseClicked="#onClick" prefHeight="100.0" prefWidth="495.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="anchorPanelEgg" onMouseClicked="#onClick" prefHeight="100.0" prefWidth="495.0" stylesheets="@recipe_search.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="imageFood" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="foodLabel" layoutX="160.0" layoutY="40.0" prefHeight="25.0" prefWidth="321.0">
+      <ImageView fx:id="resultFlagImage" fitHeight="32.0" fitWidth="32.0" layoutX="117.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="foodLabel" layoutX="160.0" layoutY="7.0" prefHeight="25.0" prefWidth="321.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <ImageView fx:id="resultMainIngredientImage" fitHeight="25.0" fitWidth="25.0" layoutX="166.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="resultDifficultyImage" fitHeight="25.0" fitWidth="64.0" layoutX="200.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="resultTimeLabel" layoutX="279.0" layoutY="36.0" text="000" />
+      <Label layoutX="299.0" layoutY="36.0" text="Minuter" />
+      <Label fx:id="resultPriceLabel" layoutX="347.0" layoutY="36.0" text="pris" />
+      <Label layoutX="367.0" layoutY="36.0" text="Kr" />
+      <Label fx:id="resultDescriptionLabel" layoutX="166.0" layoutY="57.0" prefHeight="57.0" prefWidth="321.0" text="description" wrapText="true" />
    </children>
+   <styleClass>
+      <String fx:value="recipe-list-item" />
+      <String fx:value="root" />
+   </styleClass>
 </fx:root>
